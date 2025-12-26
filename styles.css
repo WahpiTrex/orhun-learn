@@ -927,17 +927,93 @@ hr {
 }
 
 /* =============================================
-   RESPONSIVE
+   RESPONSIVE - Mobile First
    ============================================= */
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+    .level-indicator {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+
+    .level-info {
+        align-items: center;
+    }
+
+    .level-progress {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .welcome-content {
+        padding: var(--spacing-xl);
+        margin: var(--spacing-md);
+    }
+
+    .welcome-desc {
+        font-size: 1rem;
+    }
+
+    .word-orhun .char {
+        font-size: 2rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+}
+
+/* Mobile (max-width: 600px) */
 @media (max-width: 600px) {
+    :root {
+        --spacing-xl: 1.5rem;
+        --spacing-2xl: 2rem;
+    }
+
     .header {
         padding: var(--spacing-sm) var(--spacing-md);
     }
 
-    .alphabet-bar .letter-item {
-        width: 28px;
-        height: 28px;
-        font-size: 0.875rem;
+    .logo .orhun-text {
+        font-size: 1rem;
+    }
+
+    .logo .latin-text {
+        font-size: 0.6rem;
+    }
+
+    .btn-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Hide alphabet bar on very small screens */
+    .alphabet-bar {
+        display: none;
+    }
+
+    .level-indicator {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .level-badge {
+        width: 55px;
+        height: 55px;
+    }
+
+    .level-number {
+        font-size: 1.25rem;
+    }
+
+    .level-name {
+        font-size: 1rem;
+    }
+
+    .level-desc {
+        font-size: 0.75rem;
     }
 
     .game-container {
@@ -945,31 +1021,170 @@ hr {
         gap: var(--spacing-lg);
     }
 
-    .word-display .word-letter {
-        width: 50px;
-        height: 60px;
-        font-size: 1.5rem;
+    /* Smaller word display */
+    .word-display-wrapper {
+        padding: var(--spacing-md);
+        min-width: auto;
+        width: 100%;
     }
 
+    .word-orhun .char {
+        font-size: 1.75rem;
+        padding: var(--spacing-xs);
+    }
+
+    .word-latin .char {
+        font-size: 0.875rem;
+    }
+
+    .word-meaning {
+        font-size: 0.875rem;
+    }
+
+    /* Letter card - smaller */
     .letter-card {
-        width: 150px;
-        height: 170px;
+        width: 130px;
+        height: 150px;
     }
 
     .letter-orhun {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 
+    .letter-latin {
+        font-size: 1.25rem;
+    }
+
+    .hint-text {
+        font-size: 0.875rem;
+        max-width: 280px;
+    }
+
+    /* Answer Grid - Touch friendly */
     .letter-grid {
         grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-xs);
+        max-width: 100%;
     }
 
     .letter-grid .grid-letter {
         font-size: 1.5rem;
+        min-height: 60px;
+        /* Touch target size */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 
+    .letter-grid .grid-letter .grid-latin {
+        font-size: 0.55rem;
+    }
+
+    /* Welcome screen */
     .welcome-title .orhun-large {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .welcome-title span:last-child {
+        font-size: 1.25rem;
+    }
+
+    .welcome-desc {
+        font-size: 0.875rem;
+    }
+
+    .btn-start {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: 1rem;
+    }
+
+    .welcome-hint {
+        display: none;
+        /* Hide keyboard hint on mobile */
+    }
+
+    /* Modals - Full screen on mobile */
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        min-height: 50vh;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    /* Feedback */
+    .feedback {
+        font-size: 1rem;
+        min-height: 32px;
+    }
+
+    /* Bonus sentence modal - Mobile */
+    .bonus-content {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md);
+    }
+
+    .bonus-icon {
+        font-size: 3rem;
+    }
+
+    .bonus-orhun {
+        font-size: 2rem;
+    }
+
+    .bonus-latin {
+        font-size: 1.25rem;
+    }
+
+    .bonus-meaning {
+        font-size: 0.875rem;
+    }
+}
+
+/* Very small screens (max-width: 360px) */
+@media (max-width: 360px) {
+    .letter-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .letter-grid .grid-letter {
+        font-size: 1.25rem;
+        min-height: 55px;
+    }
+
+    .word-orhun .char {
+        font-size: 1.5rem;
+    }
+
+    .letter-card {
+        width: 110px;
+        height: 130px;
+    }
+
+    .letter-orhun {
+        font-size: 3rem;
+    }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .game-container {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+
+    .letter-focus {
+        display: none;
+    }
+
+    .word-section {
+        gap: var(--spacing-sm);
+    }
+
+    .letter-grid {
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 
