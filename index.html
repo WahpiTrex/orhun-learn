@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orhun Alfabesi Öğren | Göktürk Yazısı</title>
+    <meta name="description"
+        content="Orhun (Göktürk) alfabesini interaktif oyunlarla öğrenin. Kadim Türk yazısını keşfedin!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+Old+Turkic&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <button class="btn-icon" id="settingsBtn" aria-label="Ayarlar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+        </button>
+
+        <h1 class="logo">
+            <span class="orhun-text">𐰆𐰺𐰴𐰆𐰣</span>
+            <span class="latin-text">ORHUN</span>
+        </h1>
+
+        <button class="btn-icon" id="statsBtn" aria-label="İstatistikler">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10"></path>
+                <path d="M12 20V4"></path>
+                <path d="M6 20v-6"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Alphabet Progress Bar -->
+    <div class="alphabet-bar" id="alphabetBar">
+        <!-- Letters will be populated by JS -->
+    </div>
+
+    <!-- Level Progress Indicator -->
+    <div class="level-indicator" id="levelIndicator">
+        <div class="level-badge">
+            <span class="level-number" id="levelNumber">1</span>
+            <span class="level-label">SEVİYE</span>
+        </div>
+        <div class="level-info">
+            <div class="level-name" id="levelName">Başlangıç</div>
+            <div class="level-desc" id="levelDesc">Temel sesler: A, I, T</div>
+            <div class="level-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <span class="progress-text" id="progressText">0 / 3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Container -->
+    <main class="game-container">
+        <!-- Word Section -->
+        <div class="word-section">
+            <!-- Word Meaning -->
+            <div class="word-meaning" id="wordMeaning">At (hayvan)</div>
+
+            <!-- Word Display: Question on top, Answer below -->
+            <div class="word-display-wrapper">
+                <div class="word-orhun" id="wordOrhun">
+                    <!-- Question row -->
+                </div>
+                <div class="word-latin" id="wordLatin">
+                    <!-- Answer row -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Letter Focus -->
+        <div class="letter-focus">
+            <div class="letter-card" id="letterCard">
+                <div class="letter-orhun" id="currentLetter">𐰀</div>
+                <div class="letter-latin" id="currentLatin">A</div>
+            </div>
+            <div class="hint-text" id="hintText">Ağızdan çıkan A sesi</div>
+        </div>
+
+        <!-- Letter Selection Grid -->
+        <div class="letter-grid" id="letterGrid">
+            <!-- Selectable letters will be populated by JS -->
+        </div>
+
+        <!-- Feedback Area -->
+        <div class="feedback" id="feedback"></div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Ayarlar</h2>
+                <button class="btn-close" id="closeSettings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="soundToggle">Ses Efektleri</label>
+                    <input type="checkbox" id="soundToggle" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="hintsToggle">Görsel İpuçları</label>
+                    <input type="checkbox" id="hintsToggle" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="alphabetBarToggle">Alfabe Çubuğu</label>
+                    <input type="checkbox" id="alphabetBarToggle" checked>
+                </div>
+                <hr>
+                <div class="setting-item">
+                    <button class="btn-secondary" id="resetProgressBtn">İlerlemeyi Sıfırla</button>
+                </div>
+                <div class="setting-item">
+                    <button class="btn-primary" id="getCodeBtn">İlerleme Kodu Al</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Modal -->
+    <div class="modal" id="statsModal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>İstatistikler</h2>
+                <button class="btn-close" id="closeStats">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats will be populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content glass-card">
+            <h1 class="welcome-title">
+                <span class="orhun-large">𐰆𐰺𐰴𐰆𐰣</span>
+                <span>Orhun Alfabesi</span>
+            </h1>
+            <p class="welcome-desc">
+                Kadim Göktürk yazısını interaktif oyunlarla öğrenin.
+                Harfleri tanıyın, kelimeleri yazın, Türk tarihine yolculuk yapın!
+            </p>
+            <button class="btn-start" id="startBtn">
+                <span>Başla</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </button>
+            <p class="welcome-hint">veya Enter tuşuna basın</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/alphabet.js"></script>
+    <script src="js/words.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
