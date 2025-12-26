@@ -22,6 +22,18 @@
     --error: #ef4444;
     --warning: #f59e0b;
 
+    /* Vowel Harmony Colors (Ünlü Uyumu) */
+    --vowel-back: #ff6b35;
+    /* Kalın - Warm orange */
+    --vowel-back-bg: rgba(255, 107, 53, 0.15);
+    --vowel-back-border: rgba(255, 107, 53, 0.5);
+    --vowel-front: #7c3aed;
+    /* İnce - Cool purple */
+    --vowel-front-bg: rgba(124, 58, 237, 0.15);
+    --vowel-front-border: rgba(124, 58, 237, 0.5);
+    --vowel-neutral: #64748b;
+    /* Kutupsuz - Neutral gray */
+
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -1385,4 +1397,159 @@ hr {
 .word-suffix {
     color: var(--accent-secondary);
     font-weight: 600;
+}
+
+/* =============================================
+   VOWEL HARMONY VISUALS (Ünlü Uyumu)
+   ============================================= */
+
+/* Vowel Harmony Badge */
+.vowel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.vowel-badge.back {
+    background: var(--vowel-back-bg);
+    border: 1px solid var(--vowel-back-border);
+    color: var(--vowel-back);
+}
+
+.vowel-badge.front {
+    background: var(--vowel-front-bg);
+    border: 1px solid var(--vowel-front-border);
+    color: var(--vowel-front);
+}
+
+.vowel-badge.neutral {
+    background: rgba(100, 116, 139, 0.15);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    color: var(--vowel-neutral);
+}
+
+/* Letter Card with Vowel Harmony */
+.letter-card.back-vowel {
+    border-color: var(--vowel-back);
+    box-shadow:
+        0 0 40px rgba(255, 107, 53, 0.2),
+        inset 0 0 60px rgba(255, 107, 53, 0.05);
+}
+
+.letter-card.front-vowel {
+    border-color: var(--vowel-front);
+    box-shadow:
+        0 0 40px rgba(124, 58, 237, 0.2),
+        inset 0 0 60px rgba(124, 58, 237, 0.05);
+}
+
+/* Grid Letter with Vowel Harmony */
+.letter-grid .grid-letter.back-vowel {
+    border-color: var(--vowel-back-border);
+    background: var(--vowel-back-bg);
+}
+
+.letter-grid .grid-letter.back-vowel:hover {
+    border-color: var(--vowel-back);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+}
+
+.letter-grid .grid-letter.front-vowel {
+    border-color: var(--vowel-front-border);
+    background: var(--vowel-front-bg);
+}
+
+.letter-grid .grid-letter.front-vowel:hover {
+    border-color: var(--vowel-front);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+}
+
+/* Vowel Harmony Indicator */
+.vowel-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.vowel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.vowel-dot.back {
+    background: var(--vowel-back);
+    box-shadow: 0 0 8px var(--vowel-back);
+}
+
+.vowel-dot.front {
+    background: var(--vowel-front);
+    box-shadow: 0 0 8px var(--vowel-front);
+}
+
+/* Vowel dots inside grid letters */
+.grid-letter .vowel-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+}
+
+.letter-grid .grid-letter {
+    position: relative;
+}
+
+/* Vowel Legend */
+.vowel-legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.legend-dot.back {
+    background: var(--vowel-back);
+}
+
+.legend-dot.front {
+    background: var(--vowel-front);
+}
+
+/* Hint with vowel type */
+.hint-text .vowel-type {
+    font-weight: 600;
+}
+
+.hint-text .vowel-type.back {
+    color: var(--vowel-back);
+}
+
+.hint-text .vowel-type.front {
+    color: var(--vowel-front);
 }

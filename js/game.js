@@ -472,9 +472,17 @@ class OrhunGame {
             const shuffled = [...combinedChars].sort(() => Math.random() - 0.5);
 
             this.elements.letterGrid.innerHTML = shuffled.map(char => {
+                const letterInfo = findLetterByChar(char);
+                let vowelClass = '';
+                if (letterInfo && letterInfo.variant === 'back') {
+                    vowelClass = 'back-vowel';
+                } else if (letterInfo && letterInfo.variant === 'front') {
+                    vowelClass = 'front-vowel';
+                }
                 return `
-                    <button class="grid-letter orhun-answer" data-char="${char}">
+                    <button class="grid-letter orhun-answer ${vowelClass}" data-char="${char}">
                         ${char}
+                        ${letterInfo && letterInfo.variant ? `<span class="vowel-dot ${letterInfo.variant}"></span>` : ''}
                     </button>
                 `;
             }).join('');
@@ -499,7 +507,14 @@ class OrhunGame {
         const letterInfo = findLetterByChar(targetChar);
 
         if (this.settings.hintsEnabled && letterInfo) {
-            this.elements.hintText.textContent = letterInfo.hint;
+            // Show vowel harmony type in hint
+            let vowelTypeLabel = '';
+            if (letterInfo.variant === 'back') {
+                vowelTypeLabel = '<span class="vowel-type back">KALIN</span> ';
+            } else if (letterInfo.variant === 'front') {
+                vowelTypeLabel = '<span class="vowel-type front">İNCE</span> ';
+            }
+            this.elements.hintText.innerHTML = vowelTypeLabel + letterInfo.hint;
             this.elements.hintText.style.display = 'block';
         } else {
             this.elements.hintText.style.display = 'none';
